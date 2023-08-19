@@ -7,8 +7,18 @@ import Slack from "./assets/slack.svg"
 import Git from "./assets/github.svg"
 import KodeHauz from "./assets/KodeHauz.svg"
 import Logo from "./assets/logo.svg"
+import data from "./data.js";
 
 const App = () => {
+  const linkTree = data.map(linkComp => {
+    return (
+      <LinkTree 
+        key = {linkComp.id}
+        details = {linkComp}
+      />
+    )
+  })
+
   return (
     <div className="container relative">
       <div className="share absolute">
@@ -23,30 +33,9 @@ const App = () => {
         </div>
         <p className="profile-name">John Doe</p>
       </section>
-      <LinkTree 
-        link = "https://www.twitter.com/ChumaUdechukwu"
-        text = "Twitter Link"
-      />
-      <LinkTree 
-        link = "#"
-        text = "KodeCamp Team"
-      />
-      <LinkTree 
-        link = "#"
-        text = "KodeCamp Books"
-      />
-      <LinkTree 
-        link = "#"
-        text = "Python Books"
-      />
-      <LinkTree 
-        link = "#"
-        text = "Background Check for Coders"
-      />
-      <LinkTree 
-        link = "#"
-        text = "Design Books"
-      />
+
+      {linkTree}
+      
       <div className="socials">
         <a href="#"><img src={Slack} alt="slack Icon" /></a>
         <a href="#"><img src={Git} alt="git Icon" /></a>
@@ -60,8 +49,8 @@ const App = () => {
 const LinkTree = (props) => {
   return (
     <div className="link-container">
-      <a href={props.link} className="link">
-        <p>{props.text}</p>
+      <a href={props.details.link} className="link">
+        <p>{props.details.text}</p>
       </a>
     </div>
   )
